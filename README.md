@@ -90,14 +90,13 @@ ML-Mini-project-Employee-Salary-Prediction/
 - Python 3.10+
 - pip
 
-### Installation
-
-```bash
+### Demo link: http://localhost:8501/
 
 
-Then open https://ml-mini-project-employee-salary-prediction-656ogqokidibktqycdz.streamlit.app/.
 
----
+
+Then open 
+
 
 ## 🧠 How the ML Model Works
 
