@@ -91,6 +91,7 @@ ML-Mini-project-Employee-Salary-Prediction/
 - pip
 
 ### Demo link: http://localhost:8501/
+network URL: http://10.198.84.193:8501/
 
 
 
