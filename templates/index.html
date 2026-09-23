@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI-powered Employee Salary Prediction System — Predict salaries in Indian Rupees (₹) across 10 industry domains using Machine Learning.">
+    <title>SalaryIQ — AI Employee Salary Prediction</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <!-- ── Animated Background ──────────────────────────────────── -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow--1"></div>
+    <div class="bg-glow bg-glow--2"></div>
+    <div class="bg-glow bg-glow--3"></div>
+
+    <!-- ── Header ───────────────────────────────────────────────── -->
+    <header class="header" id="header">
+        <div class="header__inner">
+            <div class="header__brand">
+                <div class="header__logo">
+                    <span class="header__logo-icon">₹</span>
+                </div>
+                <div>
+                    <h1 class="header__title">SalaryIQ</h1>
+                    <p class="header__subtitle">AI-Powered Salary Prediction</p>
+                </div>
+            </div>
+            <div class="header__badge" id="modelBadge">
+                <span class="header__badge-dot"></span>
+                <span id="modelName">Loading model...</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ── Main Content ─────────────────────────────────────────── -->
+    <main class="main">
+        <div class="container">
+
+            <!-- Hero Section -->
+            <section class="hero" id="hero">
+                <h2 class="hero__title">
+                    Predict Employee Salaries
+                    <span class="hero__gradient">Across India</span>
+                </h2>
+                <p class="hero__desc">
+                    Powered by Machine Learning — Enter employee details to get an accurate
+                    salary prediction in <strong>₹ Indian Rupees</strong> with a personalized summary.
+                </p>
+                <div class="hero__stats" id="heroStats">
+                    <div class="hero__stat">
+                        <span class="hero__stat-value">10</span>
+                        <span class="hero__stat-label">Domains</span>
+                    </div>
+                    <div class="hero__stat">
+                        <span class="hero__stat-value">5000+</span>
+                        <span class="hero__stat-label">Training Records</span>
+                    </div>
+                    <div class="hero__stat">
+                        <span class="hero__stat-value" id="accuracyStat">—</span>
+                        <span class="hero__stat-label">Accuracy (R²)</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── Prediction Form ──────────────────────────────── -->
+            <section class="form-section" id="formSection">
+                <div class="form-card">
+                    <div class="form-card__header">
+                        <h3 class="form-card__title">
+                            <span class="form-card__icon">👤</span>
+                            Employee Details
+                        </h3>
+                        <p class="form-card__desc">Fill in the profile to predict salary</p>
+                    </div>
+
+                    <form id="predictionForm" class="form">
+                        <!-- Row 1: Name & Age -->
+                        <div class="form__row form__row--2">
+                            <div class="form__group">
+                                <label class="form__label" for="name">Full Name</label>
+                                <input type="text" id="name" class="form__input" placeholder="e.g., Rahul Sharma" required>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="age">Age</label>
+                                <div class="form__slider-wrap">
+                                    <input type="range" id="age" class="form__range" min="22" max="60" value="28">
+                                    <span class="form__range-value" id="ageValue">28 yrs</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 2: Gender & Education -->
+                        <div class="form__row form__row--2">
+                            <div class="form__group">
+                                <label class="form__label" for="gender">Gender</label>
+                                <select id="gender" class="form__select" required>
+                                    <option value="">Select gender</option>
+                                </select>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="education">Education Level</label>
+                                <select id="education" class="form__select" required>
+                                    <option value="">Select education</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Row 3: Domain & Job Title -->
+                        <div class="form__row form__row--2">
+                            <div class="form__group">
+                                <label class="form__label" for="domain">Industry Domain</label>
+                                <select id="domain" class="form__select" required>
+                                    <option value="">Select domain</option>
+                                </select>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="jobTitle">Job Title</label>
+                                <select id="jobTitle" class="form__select" required>
+                                    <option value="">Select domain first</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Row 4: Experience & Skills -->
+                        <div class="form__row form__row--2">
+                            <div class="form__group">
+                                <label class="form__label" for="experience">Experience (Years)</label>
+                                <div class="form__slider-wrap">
+                                    <input type="range" id="experience" class="form__range" min="0" max="35" step="0.5" value="5">
+                                    <span class="form__range-value" id="experienceValue">5.0 yrs</span>
+                                </div>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="skills">Skills Count</label>
+                                <div class="form__slider-wrap">
+                                    <input type="range" id="skills" class="form__range" min="1" max="15" value="5">
+                                    <span class="form__range-value" id="skillsValue">5</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 5: Certifications & Performance -->
+                        <div class="form__row form__row--2">
+                            <div class="form__group">
+                                <label class="form__label" for="certifications">Certifications</label>
+                                <div class="form__slider-wrap">
+                                    <input type="range" id="certifications" class="form__range" min="0" max="5" value="1">
+                                    <span class="form__range-value" id="certificationsValue">1</span>
+                                </div>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="performance">Performance Rating</label>
+                                <div class="form__slider-wrap">
+                                    <input type="range" id="performance" class="form__range" min="1.0" max="5.0" step="0.1" value="3.5">
+                                    <span class="form__range-value" id="performanceValue">3.5 ⭐</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 6: Company Size & City Tier -->
+                        <div class="form__row form__row--2">
+                            <div class="form__group">
+                                <label class="form__label" for="companySize">Company Size</label>
+                                <select id="companySize" class="form__select" required>
+                                    <option value="">Select company size</option>
+                                </select>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="cityTier">City Tier</label>
+                                <select id="cityTier" class="form__select" required>
+                                    <option value="">Select city tier</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="form__submit" id="predictBtn">
+                            <span class="form__submit-text">
+                                <span class="form__submit-icon">🔮</span>
+                                Predict Salary
+                            </span>
+                            <span class="form__submit-loading" style="display:none">
+                                <span class="spinner"></span>
+                                Analyzing...
+                            </span>
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- ── Results Section ──────────────────────────────── -->
+            <section class="results-section" id="resultsSection" style="display:none">
+
+                <!-- Salary Card -->
+                <div class="salary-card" id="salaryCard">
+                    <div class="salary-card__label">Predicted Annual Salary</div>
+                    <div class="salary-card__amount" id="salaryAmount">₹0</div>
+                    <div class="salary-card__sub">
+                        <span id="salaryLakhs"></span> per annum
+                    </div>
+                    <div class="salary-card__monthly">
+                        Monthly: <strong id="monthlySalary">₹0</strong>
+                    </div>
+                    <div class="salary-card__model">
+                        Predicted by <span id="resultModel"></span>
+                        • <span id="resultAccuracy"></span>% accuracy
+                    </div>
+                </div>
+
+                <!-- Employee Summary -->
+                <div class="summary-card" id="summaryCard">
+                    <div class="summary-card__header">
+                        <div class="summary-card__avatar" id="summaryAvatar">👤</div>
+                        <div>
+                            <h3 class="summary-card__name" id="summaryName">Employee Name</h3>
+                            <p class="summary-card__role" id="summaryRole">Job Title • Domain</p>
+                        </div>
+                    </div>
+                    <div class="summary-card__text" id="summaryText"></div>
+                    <div class="summary-card__highlights" id="summaryHighlights"></div>
+                </div>
+
+                <!-- Feature Importance -->
+                <div class="importance-card" id="importanceCard">
+                    <h3 class="importance-card__title">📊 What Influences Salary Most?</h3>
+                    <div class="importance-card__chart" id="importanceChart"></div>
+                </div>
+
+                <!-- Try Again -->
+                <button class="try-again-btn" id="tryAgainBtn">
+                    ← Make Another Prediction
+                </button>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ── Footer ───────────────────────────────────────────────── -->
+    <footer class="footer">
+        <p>Built with 🤖 Machine Learning & Flask • ML Mini Project</p>
+        <p class="footer__sub">Employee Salary Prediction System — Salaries in ₹ INR</p>
+    </footer>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
