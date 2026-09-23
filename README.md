@@ -93,29 +93,9 @@ ML-Mini-project-Employee-Salary-Prediction/
 ### Installation
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/mohammadjasim897/ML-Mini-project-Employee-Salary-Prediction.git
-cd ML-Mini-project-Employee-Salary-Prediction
 
-# 2. Create virtual environment (recommended)
-python -m venv venv
-source venv/bin/activate        # Linux/Mac
-venv\Scripts\activate           # Windows
 
-# 3. Install dependencies
-pip install -r requirements.txt
-
-# 4. Generate the dataset
-python data/generate_dataset.py
-
-# 5. Train the ML model
-python model/train_model.py
-
-# 6. Run the web application
-python app.py
-```
-
-Then open **http://localhost:5000** in your browser.
+Then open https://ml-mini-project-employee-salary-prediction-656ogqokidibktqycdz.streamlit.app/.
 
 ---
 
